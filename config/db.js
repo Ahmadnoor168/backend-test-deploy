@@ -1,26 +1,13 @@
-const { MongoClient } = require("mongodb");
+const mongoose = require("mongoose");
 
-let db;
-
-const connectDB = async (uri) => {
+const connectDB = async () => {
   try {
-    const client = new MongoClient(uri);
-    await client.connect();
-
-    db = client.db(); // uses DB name from URI
-    console.log("MongoDB Atlas Connected");
-
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log("MongoDB Connected ✅");
   } catch (error) {
-    console.error("MongoDB connection failed:", error);
+    console.error("MongoDB connection failed ❌", error);
     process.exit(1);
   }
 };
 
-const getDB = () => {
-  if (!db) {
-    throw new Error("Database not initialized");
-  }
-  return db;
-};
-
-module.exports = { connectDB, getDB };
+module.exports = connectDB;

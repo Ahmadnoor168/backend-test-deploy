@@ -1,0 +1,67 @@
+### 🔹 Health Check
+GET http://localhost:3000/api/health
+Content-Type: application/json
+
+### 🔹 Root
+GET http://localhost:3000/
+Content-Type: application/json
+
+### 🔹 Auth - Login by CNIC
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "cnic": "12345-1234567-1"
+}
+
+### 🔹 Police Record - Create
+POST http://localhost:3000/api/police-record
+Content-Type: application/json
+
+{
+  "name": "Ahmad Noor",
+  "sonOf": "Father Name",
+  "fatherName": "Father Full Name",
+  "cnic": "12345-1234567-3",
+  "contactNo": "03001234567",
+  "dob": "1990-01-01",
+  "certificateNo": "CERT123",
+  "issueDate": "2025-01-01",
+  "purpose": "Visa",
+  "criminalRecord": "No",
+  "passportNo": "P123456",
+  "passportIssuedDetail": "Islamabad",
+  "cnicIssuedDetail": "Lahore",
+  "city": "Lahore",
+  "address": "Street 1, Lahore",
+  "courierAddress": "Street 1, Lahore",
+  "policeStation": "City Station",
+  "stayFrom": "2020-01-01",
+  "stayTo": "2025-01-01",
+  "imageUrl": "https://res.cloudinary.com/demo/image/upload/sample.jpg"
+}
+
+### 🔹 Police Record - Get All Records
+GET http://localhost:3000/api/police-records
+Content-Type: application/json
+
+### 🔹 Police Record - Get Record by CNIC
+GET http://localhost:3000/api/police-record/12345-1234567-1
+Content-Type: application/json
+
+### 🔹 Police Record - Update Record
+PUT http://localhost:3000/api/police-record/12345-1234567-1
+Content-Type: application/json
+
+{
+  "contactNo": "03007654321",
+  "address": "Updated Address, Lahore"
+}
+
+### 🔹 Police Record - Delete Record
+DELETE http://localhost:3000/api/police-record/12345-1234567-1
+Content-Type: application/json
+
+### 🔹 Cloudinary Signature
+GET http://localhost:3000/api/sign  ature
+Content-Type: application/json
