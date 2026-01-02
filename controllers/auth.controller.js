@@ -5,7 +5,7 @@ const login = async (req, res) => {
   try {
     const { cnic } = req.body;
     if (!cnic) return res.status(400).json({ error: "CNIC is required" });
-
+    
     // Check if CNIC exists in police records
     const user = await PoliceRecord.findOne({ cnic });
     if (!user) return res.status(404).json({ error: "CNIC not found in police records" });

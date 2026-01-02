@@ -3,9 +3,7 @@ const mongoose = require("mongoose");
 const PoliceRecordSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
-
     sonOf: { type: String, required: true },
-    fatherName: { type: String },
 
     cnic: { type: String, required: true, unique: true },
     contactNo: { type: String, required: true },
@@ -15,10 +13,7 @@ const PoliceRecordSchema = new mongoose.Schema(
     certificateNo: { type: String, required: true },
     issueDate: { type: Date, required: true },
 
-    formSubmitDate: { type: Date, default: Date.now },
-
     purpose: { type: String, required: true },
-    purposeOfCertificate: { type: String },
 
     criminalRecord: {
       type: String,
@@ -26,26 +21,22 @@ const PoliceRecordSchema = new mongoose.Schema(
       required: true,
     },
 
-    passportNo: { type: String },
-    passportIssuedDetail: { type: String },
-
-    cnicIssuedDetail: { type: String },
+    passportNo: String,
+    passportIssuedDetail: String,
+    cnicIssuedDetail: String,
 
     city: { type: String, required: true },
     address: { type: String, required: true },
-    courierAddress: { type: String },
+    courierAddress: String,
 
     policeStation: { type: String, required: true },
 
-    stayFrom: { type: Date, required: true },
-    stayTo: { type: Date, required: true },
+    stayFrom: { type: String, required: true },
+    stayTo: { type: String, required: true },
 
     imageUrl: { type: String, required: true },
-    
-    activeStatus: { type: Boolean, default: true },
-
   },
-  { timestamps: true }
+  { timestamps: true, strict: true }
 );
 
 module.exports = mongoose.model("PoliceRecord", PoliceRecordSchema);

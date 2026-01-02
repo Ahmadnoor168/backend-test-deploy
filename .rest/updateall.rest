@@ -21,8 +21,7 @@ Content-Type: application/json
 {
   "name": "Ahmad Noor",
   "sonOf": "Father Name",
-  "fatherName": "Father Full Name",
-  "cnic": "12345-1234567-3",
+  "cnic": "12345-1234567-5",
   "contactNo": "03001234567",
   "dob": "1990-01-01",
   "certificateNo": "CERT123",
@@ -46,7 +45,7 @@ GET http://localhost:3000/api/police-records
 Content-Type: application/json
 
 ### 🔹 Police Record - Get Record by CNIC
-GET http://localhost:3000/api/police-record/12345-1234567-1
+GET http://localhost:3000/api/police-record/12345-1234567-2
 Content-Type: application/json
 
 ### 🔹 Police Record - Update Record
@@ -63,5 +62,5 @@ DELETE http://localhost:3000/api/police-record/12345-1234567-1
 Content-Type: application/json
 
 ### 🔹 Cloudinary Signature
-GET http://localhost:3000/api/sign  ature
+GET http://localhost:3000/api/signature
 Content-Type: application/json

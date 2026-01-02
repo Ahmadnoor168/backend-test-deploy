@@ -3,18 +3,21 @@ const PoliceRecord = require("../models/PoliceRecord.model");
 // ✅ CREATE RECORD
 const addPoliceRecord = async (req, res) => {
   try {
+    console.log("Incoming payload:", req.body); // 🔹 log
     const record = await PoliceRecord.create(req.body);
     res.status(201).json({
       message: "Police record created successfully",
       record,
     });
   } catch (error) {
+    console.error("MongoDB Error:", error); // 🔹 log the error
     if (error.code === 11000) {
       return res.status(400).json({ error: "CNIC already exists" });
     }
     res.status(500).json({ error: error.message });
   }
 };
+
 
 // ✅ GET ALL RECORDS
 const getAllRecords = async (req, res) => {
