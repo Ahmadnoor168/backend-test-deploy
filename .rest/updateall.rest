@@ -11,7 +11,7 @@ POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
-  "cnic": "12345-1234567-1"
+  "cnic": "33213-1232131-2"
 }
 
 ### 🔹 Police Record - Create
@@ -45,7 +45,7 @@ GET http://localhost:3000/api/police-records
 Content-Type: application/json
 
 ### 🔹 Police Record - Get Record by CNIC
-GET http://localhost:3000/api/police-record/12345-1234567-2
+GET http://localhost:3000/api/police-record/33213-1232131-2
 Content-Type: application/json
 
 ### 🔹 Police Record - Update Record
