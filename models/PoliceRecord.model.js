@@ -21,7 +21,7 @@ const PoliceRecordSchema = new mongoose.Schema(
       enum: ["Yes", "No"],
       required: true,
     },
-gender: {
+    gender: {
       type: String,
       enum: ["male", "female", "married"],
       required: true,
