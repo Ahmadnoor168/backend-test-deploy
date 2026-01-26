@@ -4,7 +4,7 @@ const PoliceRecordSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
     sonOf: { type: String, required: true },
-    Location: { type: String, required: true },
+    location: { type: String, required: true },
     submitDateTime: { type: String, required: true },
 
     cnic: { type: String, required: true, unique: true },
