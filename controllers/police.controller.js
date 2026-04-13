@@ -21,45 +21,65 @@ const addPoliceRecord = async (req, res) => {
 
 // ✅ GET ALL RECORDS
 const getAllRecords = async (req, res) => {
-  const records = await PoliceRecord.find().sort({ createdAt: -1 });
-  res.json(records);
+  try {
+    const records = await PoliceRecord.find().sort({ createdAt: -1 });
+    res.json(records);
+  } catch (error) {
+    console.error("Get All Records Error:", error);
+    res.status(500).json({ error: "Failed to fetch records" });
+  }
 };
 
 // ✅ GET RECORD BY CNIC
 const getRecordByCNIC = async (req, res) => {
-  const record = await PoliceRecord.findOne({ cnic: req.params.cnic });
-  if (!record) {
-    return res.status(404).json({ error: "Record not found" });
+  try {
+    const record = await PoliceRecord.findOne({ cnic: req.params.cnic });
+    if (!record) {
+      return res.status(404).json({ error: "Record not found" });
+    }
+    res.json(record);
+  } catch (error) {
+    console.error("Get Record Error:", error);
+    res.status(500).json({ error: "Failed to fetch record" });
   }
-  res.json(record);
 };
 
 // ✅ UPDATE RECORD
 const updateRecord = async (req, res) => {
-  const record = await PoliceRecord.findOneAndUpdate(
-    { cnic: req.params.cnic },
-    req.body,
-    { new: true }
-  );
+  try {
+    const record = await PoliceRecord.findOneAndUpdate(
+      { cnic: req.params.cnic },
+      req.body,
+      { new: true }
+    );
 
-  if (!record) {
-    return res.status(404).json({ error: "Record not found" });
+    if (!record) {
+      return res.status(404).json({ error: "Record not found" });
+    }
+
+    res.json({ message: "Record updated successfully", record });
+  } catch (error) {
+    console.error("Update Record Error:", error);
+    res.status(500).json({ error: "Failed to update record" });
   }
-
-  res.json({ message: "Record updated successfully", record });
 };
 
 // ✅ DELETE RECORD
 const deleteRecord = async (req, res) => {
-  const record = await PoliceRecord.findOneAndDelete({
-    cnic: req.params.cnic,
-  });
+  try {
+    const record = await PoliceRecord.findOneAndDelete({
+      cnic: req.params.cnic,
+    });
 
-  if (!record) {
-    return res.status(404).json({ error: "Record not found" });
+    if (!record) {
+      return res.status(404).json({ error: "Record not found" });
+    }
+
+    res.json({ message: "Record deleted successfully" });
+  } catch (error) {
+    console.error("Delete Record Error:", error);
+    res.status(500).json({ error: "Failed to delete record" });
   }
-
-  res.json({ message: "Record deleted successfully" });
 };
 
 module.exports = {

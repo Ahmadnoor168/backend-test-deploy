@@ -3,7 +3,6 @@ const cors = require("cors");
 
 const policeRoutes = require("./routes/police.routes");
 const authRoutes = require("./routes/auth.routes");
-const uploadRoutes = require("./routes/upload.routes");
 
 const app = express();
 
@@ -17,7 +16,6 @@ app.use(express.json());
 // Routes
 app.use("/api", policeRoutes);
 app.use("/api/auth", authRoutes);
-app.use("/api/upload", uploadRoutes);
 
 // Health check endpoint
 app.get("/api/health", (req, res) => {
