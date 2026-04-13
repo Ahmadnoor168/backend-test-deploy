@@ -4,9 +4,19 @@ const connectDB = require("./config/db");
 
 const PORT = process.env.PORT || 3000;
 
-(async () => {
-  await connectDB();
-  app.listen(PORT, () =>
-    console.log(`Server running on port ${PORT}`)
-  );
-})();
+const startServer = async () => {
+  try {
+    await connectDB(); // DB connect
+    console.log("MongoDB Connected ✅");
+
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+
+  } catch (error) {
+    console.error("DB Connection Failed ❌", error.message);
+    process.exit(1); // force stop (better than random crash)
+  }
+};
+
+startServer();
