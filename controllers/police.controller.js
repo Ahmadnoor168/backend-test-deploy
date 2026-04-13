@@ -22,7 +22,13 @@ const addPoliceRecord = async (req, res) => {
 // ✅ GET ALL RECORDS
 const getAllRecords = async (req, res) => {
   try {
-    const records = await PoliceRecord.find().sort({ createdAt: -1 });
+    // We select("-imageUrl") because some old records contain massive base64 strings.
+    // Fetching hundreds of 5MB strings causes V8 to crash or NGINX to drop the connection
+    // resulting in net::ERR_CONNECTION_RESET.
+    const records = await PoliceRecord.find()
+      .select("-imageUrl")
+      .sort({ createdAt: -1 })
+      .lean();
     res.json(records);
   } catch (error) {
     console.error("Get All Records Error:", error);
