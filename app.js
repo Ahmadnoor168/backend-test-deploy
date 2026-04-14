@@ -11,6 +11,15 @@ app.use(cors({
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
 }));
+
+// FORCE DISABLE QUIC/HTTP3
+// Hostinger/LiteSpeed struggles with POST payloads over QUIC.
+// This header tells browsers (like Chrome) to stop using HTTP/3 and fallback to HTTP/2
+app.use((req, res, next) => {
+  res.setHeader("Alt-Svc", "clear");
+  next();
+});
+
 app.use(express.json());
 
 // Routes
